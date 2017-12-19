@@ -1,0 +1,37 @@
+<%= form_with(model: bootcamp, local: true) do |form| %>
+  <% if bootcamp.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bootcamp.errors.count, "error") %> prohibited this bootcamp from being saved:</h2>
+
+      <ul>
+      <% bootcamp.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :bootcamp_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :bootcamp_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dates %>
+    <%= form.text_field :dates, id: :bootcamp_dates %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :picture %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
