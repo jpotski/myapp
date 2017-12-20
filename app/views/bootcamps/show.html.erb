@@ -15,6 +15,14 @@
   <%= @bootcamp.dates %>
 </p>
 
+<p>
+  <strong>Attachment:</strong>
+  <%= @bootcamp.attachment %>
+  <BR>
+  <img src="/upload/<%= @bootcamp.attachment %>" width=200 />
+</p>
+ 
+</p>
 
 <%= link_to 'Edit', edit_bootcamp_path(@bootcamp) %> |
 <%= link_to 'Back', bootcamps_path %>

@@ -31,6 +31,12 @@ class BootcampsController < ApplicationController
   def create
     @bootcamp = Bootcamp.new(bootcamp_params)
 
+    attachment = bootcamp_params['attachment']
+    @bootcamp.attachment = attachment.original_filename
+    path = "public/upload/#{@bootcamp.attachment}"
+    File.open(path, "wb") { |f| f.write(attachment.read) }
+    flash[:notice] = "File uploaded"
+
     respond_to do |format|
       if @bootcamp.save
         format.html { redirect_to @bootcamp, notice: 'Bootcamp was successfully created.' }
@@ -74,6 +80,6 @@ class BootcampsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bootcamp_params
-      params.require(:bootcamp).permit(:name, :description, :dates, :image)
+      params.require(:bootcamp).permit(:name, :description, :dates, :image, :attachment)
     end
 end
